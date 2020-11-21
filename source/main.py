@@ -8,12 +8,6 @@ from bs4 import BeautifulSoup
 from requests.exceptions import ProxyError, Timeout
 
 
-def get_config():
-    with open('config.yml', 'r') as file:
-        config = json.load(file)
-    return config
-
-
 class GithubCrawler:
 
     GITHUB_SEARCH_URL = "https://github.com/search?q={keywords}&type={type}"
@@ -82,7 +76,8 @@ class GithubCrawler:
 
 
 def main():
-    config = get_config()
+    with open('config.yml', 'r') as file:
+        config = json.load(file)
     git_crw = GithubCrawler(**config)
     search_html = git_crw.get_search_html()
     json_response = git_crw.parse_search_html(search_html)
