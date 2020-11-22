@@ -1,41 +1,76 @@
-# red_points_test
+# Red Points Test
 
-Install Virtualenv
+## How to use
+
+Crawler needs python3.6 or newer
+
+### [Optional] Virtualenv (Ubuntu)
+
+#### Install Virtualenv
 
 `sudo apt-get install virtualenv`
 
-Create Virtualenv
+#### Create Virtualenv
 
 `virtualenv -p [python path] [directory]`
 
+for example:
+
 `virtualenv -p python3.8 venv`
+
 `virtualenv -p python3.6 venv`
 
-Activate Virtualenv
+#### Activate Virtualenv
+
+`source [directory]/bin/activate`
+
+for example:
 
 `source venv/bin/activate`
 
-Deactivate Virtualenv
+#### Deactivate Virtualenv
 
 `deactivate`
 
-Install requirements
+### Run Crawler
 
-`make install-req`
+#### Write Input
+
+Modify file `source/config.yml`
+
+#### Install requirements
 
 `pip install -r requirements/dev.txt`
 
-Run Crawler
+Or via Makefile:
 
-`make run`
+`make install-req`
+
+#### Run Crawler
 
 ```bash
 cd source
 python main.py
 ```
 
-Run test
+Or via Makefile:
 
-`make run-test`
+`make run`
+
+### Run tests
+
+#### Install requirements
+
+`pip install -r requirements/dev.txt`
+
+Or via Makefile:
+
+`make install-req`
+
+#### Run pytest
 
 `python -m pytest`
+
+Or via Makefile:
+
+`make run-test`
