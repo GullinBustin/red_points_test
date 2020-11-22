@@ -1,5 +1,5 @@
 import pytest
-
+import requests
 from tests import fixtures
 from main import GithubCrawler
 from requests.exceptions import ProxyError
@@ -54,7 +54,9 @@ def test_create_github_crawler():
 
 def test_call_url_with_proxy(mocker, git_crw):
     mocker.patch('random.shuffle')
-    get_mock = mocker.patch('requests.get')
+    fake_response = requests.Response()
+    fake_response.status_code = 200
+    get_mock = mocker.patch('requests.get', return_value=fake_response)
     git_crw._call_url_with_proxy("https://myurl")
     get_mock.assert_called_with("https://myurl",
                                 proxies={"http": "127.0.0.1:8080",
