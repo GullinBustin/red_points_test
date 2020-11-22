@@ -31,7 +31,7 @@ class GithubCrawler:
                 r = requests.get(url, proxies=proxies, timeout=5)
                 r.raise_for_status()
             except (ProxyError, Timeout) as e:
-                logging.warning("Proxy %s is not available", rand_proxy)
+                logging.warning("Proxy %s is not available, error: %s", rand_proxy, e)
                 continue
             except IndexError:
                 raise ProxyError("No proxy is available")
